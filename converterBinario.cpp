@@ -6,7 +6,7 @@ void converterDecimalBinario(int valor, int binario[], int &pos);
 
 int main()
 {
-  int binario[5], valor;
+  int binario[50], valor;
   int pos = -1;
 
   cout << "Digite um numero que queira converter para binario: ";
@@ -16,7 +16,7 @@ int main()
 
   cout << "Numero em binario e: " << endl;
 
-  for (int i = 0; i < pos; i++)
+  for (int i = 0; i <= pos; i++)
   {
     cout << binario[i];
   }
@@ -26,20 +26,18 @@ int main()
 
 void converterDecimalBinario(int valor, int binario[], int &pos)
 {
-  while (valor > 2)
+  while (valor >= 2)
   {
-    if (valor == 1)
-    {
-      pos++;
-      binario[pos] = valor;
-    }
-    else
-    {
-      pos++;
-      int quociente = valor / 2;
-      int resto = valor % 2;
-      binario[pos] = resto;
-      valor = quociente;
-    }
+    pos++;
+    int quociente = valor / 2;
+    int resto = valor % 2;
+    binario[pos] = resto;
+    valor = quociente;
+  }
+
+  if (valor == 1)
+  {
+    pos++;
+    binario[pos] = valor;
   }
 }
