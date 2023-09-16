@@ -34,11 +34,19 @@ int main()
 
   do
   {
+    cout << "======== ORDEM DE PRIORIDADE ========" << endl;
+    if (pos == -1)
+    {
+      cout << "Nenhum usuario na fila de prioridade" << endl;
+    }
+    else
+    {
+      telaTodosCadastros(idosos, pos);
+    }
     cout << "Selecione uma opcao:" << endl;
     cout << "(1) Cadastrar pessoa" << endl;
     cout << "(2) Buscar por uma pessoa" << endl;
-    cout << "(3) Mostrar todas pessoas cadastradas" << endl;
-    cout << "(4) Sair" << endl;
+    cout << "(3) Sair" << endl;
     cout << "cod: ";
     cin >> escolha;
 
@@ -50,12 +58,8 @@ int main()
     {
       telaBuscar(idosos);
     }
-    else if (escolha == 3)
-    {
-      telaTodosCadastros(idosos, pos);
-    }
 
-  } while (escolha != 4);
+  } while (escolha != 3);
 }
 
 void telaRegistro(Idoso idosos[], int &pos)
@@ -67,7 +71,8 @@ void telaRegistro(Idoso idosos[], int &pos)
   {
     cout << "======== TELA DE CADASTRO DE USUARIO ========" << endl;
     cout << "Digite o nome: ";
-    cin >> idoso.nome;
+    cin.ignore();
+    getline(cin, idoso.nome);
     cout << "Digite a idade: ";
     cin >> idoso.idade;
     idoso.id = gerarIdentificador(16);
@@ -181,8 +186,6 @@ Idoso buscar(Idoso idosos[], string pesquisa)
 
 void telaTodosCadastros(Idoso idosos[], int pos)
 {
-  cout << "======== TODOS CADASTROS ========" << endl;
-
   for (int i = pos; i >= 0; i--)
   {
     cout << "Identificador: " << idosos[i].id << " | "
